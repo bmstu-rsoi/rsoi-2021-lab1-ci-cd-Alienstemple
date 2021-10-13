@@ -22,25 +22,20 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1")
 public class PersonController {
-    private final PersonService personService;
 
-    public PersonController(PersonService personService, PersonRepository personRepository) {
-        this.personService = personService;
-    }
+    @Autowired
+    private PersonService personService;
     @Autowired
     private PersonRepository personRepository;
 
     @GetMapping(value = "/persons", produces = "application/json")
     public ResponseEntity<Object> listAll() {
-        List<Person> resp = personService.getPersons();
-        return ResponseEntity.status(HttpStatus.OK).body(resp);
+        return ResponseEntity.status(HttpStatus.OK).body(personService.getPersons());
     }
 
     @GetMapping(value = "/persons/{id}", produces = "application/json")
     public ResponseEntity<Object> getPerson(@PathVariable(value = "id") Integer id) {
-        Person pers = personRepository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
-        return ResponseEntity.status(HttpStatus.OK).body(pers);
+        return ResponseEntity.status(HttpStatus.OK).body(personService.getPerson(id));
     }
 
     @PostMapping(value = "/persons", consumes = "application/json")
@@ -57,8 +52,8 @@ public class PersonController {
     }
 
     @PatchMapping(value = "/persons/{id}", consumes="application/json", produces = "application/json")
-    public Person editPerson(@PathVariable(value = "id") Integer id, @RequestBody Person newPerson) {
-        return personService.editPerson(id, newPerson);
+    public ResponseEntity<Object> editPerson(@PathVariable(value = "id") Integer id, @Valid @RequestBody Person newPerson) {
+        return ResponseEntity.status(HttpStatus.OK).body(personService.editPerson(id, newPerson));
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

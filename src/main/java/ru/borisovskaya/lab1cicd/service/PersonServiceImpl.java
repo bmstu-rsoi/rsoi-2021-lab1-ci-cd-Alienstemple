@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.borisovskaya.lab1cicd.model.Person;
 import ru.borisovskaya.lab1cicd.repository.PersonRepository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -17,7 +18,7 @@ public class PersonServiceImpl implements PersonService{
     @Override
     public Person getPerson(Integer id) {
         Person pers = personRepository.findById(id)
-                .orElseThrow();
+                .orElseThrow(EntityNotFoundException::new);
         return pers;
     }
 
@@ -33,13 +34,15 @@ public class PersonServiceImpl implements PersonService{
 
     @Override
     public Person editPerson(Integer id, Person request) {
-        Person pers = personRepository.findById(id)
-                .orElseThrow();
+        Person pers = personRepository.findById(id).orElseThrow(EntityNotFoundException::new);
 
         pers.setName(request.getName());
-        pers.setAge(request.getAge());
-        pers.setAddress(request.getAddress());
-        pers.setWork(request.getWork());
+        if (request.getAge() != null)
+            pers.setAge(request.getAge());
+        if (request.getAddress() != null)
+            pers.setAddress(request.getAddress());
+        if (request.getWork() != null)
+            pers.setWork(request.getWork());
         return personRepository.save(pers);
     }
 
