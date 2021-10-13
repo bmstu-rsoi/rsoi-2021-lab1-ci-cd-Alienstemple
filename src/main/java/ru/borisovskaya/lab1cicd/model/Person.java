@@ -1,6 +1,8 @@
 package ru.borisovskaya.lab1cicd.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
@@ -10,16 +12,20 @@ public class Person {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    @Column
+    @Column(name = "name", nullable = false, length = 80)
+    @NotEmpty
     private String name;
 
-    @Column
+    @Column(name = "age", nullable = false)
+    @NotNull
     private Integer age;
 
-    @Column
+    @Column(name = "address", nullable = false)
+    @NotNull
     private String address;
 
-    @Column
+    @Column(name = "work", nullable = false)
+    @NotNull
     private String work;
 
     public Person(String name, Integer age, String address, String work) {
