@@ -11,6 +11,7 @@ import ru.borisovskaya.lab1cicd.repository.PersonRepository;
 import ru.borisovskaya.lab1cicd.service.PersonService;
 import org.springframework.ui.Model;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.HashMap;
@@ -29,17 +30,17 @@ public class PersonController {
     @Autowired
     private PersonRepository personRepository;
 
-    // TODO: add http responce codes, links to classes
-    @GetMapping(value = "/persons", produces = "application/json")  // TODO: Json output, params
-    public List<Person> listAll() {
-        return personService.getPersons();
+    @GetMapping(value = "/persons", produces = "application/json")
+    public ResponseEntity<Object> listAll() {
+        List<Person> resp = personService.getPersons();
+        return ResponseEntity.status(HttpStatus.OK).body(resp);
     }
 
     @GetMapping(value = "/persons/{id}", produces = "application/json")
-    public Person getPerson(@PathVariable(value = "id") Integer id) {
-        //Person pers = personRepository.findById(id)
-        //        .orElseThrow();
-        return personService.getPerson(id);     // TODO: exception handling ResponseEntity
+    public ResponseEntity<Object> getPerson(@PathVariable(value = "id") Integer id) {
+        Person pers = personRepository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+        return ResponseEntity.status(HttpStatus.OK).body(pers);
     }
 
     @PostMapping(value = "/persons", consumes = "application/json")

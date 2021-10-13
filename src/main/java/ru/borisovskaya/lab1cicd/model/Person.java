@@ -16,16 +16,13 @@ public class Person {
     @NotEmpty
     private String name;
 
-    @Column(name = "age", nullable = false)
-    @NotNull
+    @Column(name = "age")
     private Integer age;
 
-    @Column(name = "address", nullable = false)
-    @NotNull
+    @Column(name = "address")
     private String address;
 
-    @Column(name = "work", nullable = false)
-    @NotNull
+    @Column(name = "work")
     private String work;
 
     public Person(String name, Integer age, String address, String work) {
@@ -33,8 +30,6 @@ public class Person {
         this.age = age;
         this.address = address;
         this.work = work;
-        // For test output
-        System.out.println(this.toString());
     }
 
     public Person() {
