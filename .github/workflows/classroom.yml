@@ -24,11 +24,11 @@ jobs:
 
       - name: Deploy Docker Image to Heroku App
         uses: akhileshns/heroku-deploy@v3.12.12
-          with:
-            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-            heroku_app_name: lab1-cicd
-            heroku_email: borisovsk_a@mail.ru
-            usedocker: true
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: lab1-cicd
+          heroku_email: borisovsk_a@mail.ru
+          usedocker: true
       - name: Run API Tests
         id: run-newman
         uses: anthonyvscode/newman-action@v1
