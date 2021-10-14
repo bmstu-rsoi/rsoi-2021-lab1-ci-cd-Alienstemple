@@ -1,6 +1,6 @@
 FROM openjdk:11-jdk as builder
 WORKDIR application
-ARG JAR_FILE=out/artifacts/lab1_cicd_jar/lab1-cicd.jar
+ARG JAR_FILE=target/lab1-cicd-0.0.1-SNAPSHOT.jar
 COPY ${JAR_FILE} application.jar
 RUN java -jar application.jar
 #RUN java -Djarmode=layertools -jar application.jar extract
