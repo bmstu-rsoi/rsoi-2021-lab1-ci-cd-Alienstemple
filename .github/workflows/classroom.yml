@@ -9,14 +9,27 @@ on:
 jobs:
   build:
     name: Autograding
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
-      # TODO build, test and deploy project
+      - uses: actions/setup-java@v1
+          with:
+            java-version: 11
 
+      - name: GitHub Action for Maven (build)
+        uses: LucaFeger/action-maven-cli@1.1.0
+        args: clean install
+
+      - name: Deploy Docker Image to Heroku App
+        uses: akhileshns/heroku-deploy@v3.12.12
+          with:
+            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+            heroku_app_name: lab1-cicd
+            heroku_email: borisovsk_a@mail.ru
+            usedocker: true
       - name: Run API Tests
         id: run-newman
         uses: anthonyvscode/newman-action@v1

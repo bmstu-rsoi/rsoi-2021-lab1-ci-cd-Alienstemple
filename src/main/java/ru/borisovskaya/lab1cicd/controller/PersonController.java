@@ -25,8 +25,6 @@ public class PersonController {
 
     @Autowired
     private PersonService personService;
-    @Autowired
-    private PersonRepository personRepository;
 
     @GetMapping(value = "/persons", produces = "application/json")
     public ResponseEntity<Object> listAll() {
