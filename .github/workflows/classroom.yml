@@ -23,7 +23,7 @@ jobs:
         run: mvn package -Dmaven.test.skip # TODO: add unit tests
 
       - name: Deploy Docker Image to Heroku App
-        uses: akhileshns/heroku-deploy@v3.12.12
+        uses: akhileshns/heroku-deploy@v3.12.12 # syntax error removed
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: lab1-cicd
