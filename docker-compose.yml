@@ -1,18 +1,24 @@
 version: "3"
 services:
-  postgres:
-    image: library/postgres:13
-    container_name: postgres
-    restart: on-failure
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: "postgres"
-      POSTGRES_DB: postgres
-    volumes:
-      - db-data:/var/lib/postgresql/data
-      - ./postgres/:/docker-entrypoint-initdb.d/
+  lab1-cicd: # name of the service
+    image: lab1-cicd # the image to use
+    container_name: lab1-cicd # what to label the container for docker ps
     ports:
-      - 5432:5432
-
-volumes:
-  db-data:
+      - 8080:8080 # note, we're mapping to port 80 instead of 5000 because we'll use 80 on the VPS
+    restart: unless-stopped
+#  postgres:
+#    image: library/postgres:13
+#    container_name: postgres
+#    restart: on-failure
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: "postgres"
+#      POSTGRES_DB: postgres
+#    volumes:
+#      - db-data:/var/lib/postgresql/data
+#      - ./postgres/:/docker-entrypoint-initdb.d/
+#    ports:
+#      - 5432:5432
+#
+#volumes:
+#  db-data:
