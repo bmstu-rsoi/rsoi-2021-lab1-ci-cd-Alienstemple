@@ -23,12 +23,12 @@ jobs:
 #        run: mvn package -Dmaven.test.skip # TODO: add unit tests
 
       - name: Deploy Docker Image to Heroku App
-        uses: akhileshns/heroku-deploy@v3.12.12 # syntax error removed
-        with:
-          heroku_api_key: 1d2d9518-5fe3-4db2-a191-88313365f768
-          heroku_app_name: lab1-cicd
-          heroku_email: borisovsk_a@mail.ru
-          usedocker: true
+          uses: akhileshns/heroku-deploy@v3.12.12 # syntax error removed
+          with:
+            heroku_api_key: 1d2d9518-5fe3-4db2-a191-88313365f768
+            heroku_app_name: lab1-cicd
+            heroku_email: borisovsk_a@mail.ru
+            usedocker: true
 
 #      - name: Deploy
 #          uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
