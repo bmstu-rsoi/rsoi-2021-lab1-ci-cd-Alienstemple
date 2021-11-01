@@ -19,8 +19,8 @@ jobs:
         with:
           java-version: 11
 
-      - name: GitHub Action for Maven (build)
-        run: mvn package -Dmaven.test.skip # TODO: add unit tests
+#      - name: GitHub Action for Maven (build)
+#        run: mvn package -Dmaven.test.skip # TODO: add unit tests
 
       - name: Deploy Docker Image to Heroku App
         uses: akhileshns/heroku-deploy@v3.12.12 # syntax error removed
