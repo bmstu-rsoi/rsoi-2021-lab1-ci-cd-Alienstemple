@@ -4,7 +4,7 @@ services:
     image: lab1-cicd # the image to use
     container_name: lab1-cicd # what to label the container for docker ps
     ports:
-      - 8080:8080 # note, we're mapping to port 80 instead of 5000 because we'll use 80 on the VPS
+      - 8080:8080 
     restart: unless-stopped
 #  postgres:
 #    image: library/postgres:13
