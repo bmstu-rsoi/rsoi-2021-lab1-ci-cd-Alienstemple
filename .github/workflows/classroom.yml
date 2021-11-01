@@ -22,21 +22,25 @@ jobs:
 #      - name: GitHub Action for Maven (build)
 #        run: mvn package -Dmaven.test.skip # TODO: add unit tests
 
-      - name: Deploy Docker Image to Heroku App
-        uses: akhileshns/heroku-deploy@v3.12.12 # syntax error removed
-        with:
-          heroku_api_key: 1d2d9518-5fe3-4db2-a191-88313365f768
-          heroku_app_name: lab1-cicd
-          heroku_email: borisovsk_a@mail.ru
-          usedocker: true
-
-#      - name: Deploy
-#        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+#      - name: Deploy Docker Image to Heroku App
+#        uses: akhileshns/heroku-deploy@v3.12.12 # syntax error removed
 #        with:
-#          heroku_api_key: da99cb25-cfad-4898-b1d3-d457329620eb
-#          heroku_app_name: "savenko-personservice"
-#          heroku_email: "finistars@mail.ru"
+#          heroku_api_key: 1d2d9518-5fe3-4db2-a191-88313365f768
+#          heroku_app_name: lab1-cicd
+#          heroku_email: borisovsk_a@mail.ru
 #          usedocker: true
+
+ # From tutorial
+      # Build Docker image
+      - name: Docker build
+        run: docker login --username=_ --password=1d2d9518-5fe3-4db2-a191-88313365f768 registry.heroku.com
+
+      # Push the Docker image to Heroku Container Registry
+      - name: Publish
+        run: |
+          heroku container:push web -a lab1-cicd
+          heroku container:release web -a lab1-cicd
+
       - name: Run API Tests
         id: run-newman
         uses: anthonyvscode/newman-action@v1
