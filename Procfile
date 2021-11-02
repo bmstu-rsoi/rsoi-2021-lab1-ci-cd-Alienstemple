@@ -1,1 +1,0 @@
-web: java -jar target/lab1-cicd-0.0.1-SNAPSHOT.jar --spring.profiles.active=heroku
