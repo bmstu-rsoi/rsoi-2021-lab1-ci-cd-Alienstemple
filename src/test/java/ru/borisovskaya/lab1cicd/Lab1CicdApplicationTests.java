@@ -9,12 +9,12 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import ru.borisovskaya.lab1cicd.controller.PersonController;
 
-@WebMvcTest(controllers = PersonController.class)
+@//WebMvcTest(controllers = PersonController.class)
 public class Lab1CicdApplicationTests {
     @Autowired
     private MockMvc mockMvc;
 
-    @Test
+   // @Test
     public void listAllTest() throws Exception {
        // mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/persons"))
        //         .andExpect(MockMvcResultMatchers.status().is(HttpStatus.OK.value()));
