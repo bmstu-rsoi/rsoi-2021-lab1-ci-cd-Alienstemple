@@ -9,7 +9,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import ru.borisovskaya.lab1cicd.controller.PersonController;
 
-@//WebMvcTest(controllers = PersonController.class)
+//@WebMvcTest(controllers = PersonController.class)
 public class Lab1CicdApplicationTests {
     @Autowired
     private MockMvc mockMvc;
